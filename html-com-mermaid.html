@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plano de Migração para Nuvem</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/theme/black.css" />
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.4.0/dist/reveal.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.esm.min.mjs" type="module"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .reveal h1, .reveal h2, .reveal h3 {
+      color: #00aaff;
+      margin-bottom: 1rem;
+    }
+    .slide-title {
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 2.4rem;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 1.5rem auto;
+      width: 200px;
+    }
+    .mermaid-container {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .columns {
+      display: flex;
+      gap: 2rem;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .column {
+      flex: 1;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background: #111;
+    }
+    th, td {
+      border: 1px solid #555;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      color: #fff;
+    }
+    th {
+      background-color: #00aaff;
+      color: #fff;
+    }
+    .reveal section img.full-width {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <img src="logo.png" alt="Logo UniSENAI" class="logo">
+        <h1 class="slide-title">PLANO DE MIGRAÇÃO PARA NUVEM</h1>
+        <h3>ESTUDO TÉCNICO E ECONÔMICO</h3>
+        <p>Arthur Maciel Oliveira<br>Gabriel Rodrigues Dias<br>Vitor Waltrick de Amorim<br>Leonardo Della Giustina</p>
+      </section>
+
+      <section>
+        <h2 class="slide-title">CENÁRIO ATUAL</h2>
+        <div class="mermaid-container">
+          <div class="mermaid" id="grafico-cenario"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="slide-title">TCO LOCAL (3 ANOS)</h2>
+        <div class="mermaid-container">
+          <div class="mermaid" id="grafico-local"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="slide-title">TCO AWS (3 ANOS)</h2>
+        <div class="mermaid-container">
+          <div class="mermaid" id="grafico-aws"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="slide-title">ARQUITETURA EM NUVEM</h2>
+        <div class="mermaid-container">
+          <div class="mermaid" id="grafico-arquitetura"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="slide-title">COMPARATIVO FINAL</h2>
+        <div class="mermaid-container">
+          <div class="mermaid" id="grafico-comparativo"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="slide-title">BENEFÍCIOS</h2>
+        <div class="columns">
+          <div class="column">
+            <ul>
+              <li>Alta disponibilidade (99,95%)</li>
+              <li>Escalabilidade sob demanda</li>
+              <li>Backups automáticos</li>
+              <li>Criptografia de dados</li>
+              <li>Redução de custos operacionais</li>
+            </ul>
+          </div>
+          <div class="column">
+            <ul>
+              <li>Eliminação de CAPEX</li>
+              <li>Foco na inovação</li>
+              <li>Maior segurança e conformidade</li>
+              <li>Ambiente resiliente</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="slide-title">CONCLUSÃO</h2>
+        <ul>
+          <li>Aprovar a migração</li>
+          <li>Monitorar indicadores</li>
+          <li>Capacitar equipe</li>
+          <li>Expandir outras cargas</li>
+        </ul>
+      </section>
+
+      <section>
+  <h1 class="slide-title">AGRADECEMOS A ATENÇÃO!</h1>
+</section>
+    </div>
+  </div>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.esm.min.mjs";
+
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      transition: 'fade'
+    });
+
+    mermaid.initialize({ startOnLoad: false });
+
+    const charts = {
+      "grafico-cenario": `flowchart TD
+        Internet -->|Acesso web| Roteador
+        Roteador --> Switch
+        Switch --> Servidor[Servidor DELL Xeon Silver 4208]
+        Servidor --> Aplicacao[Aplicacao Java]
+        Servidor --> Banco[PostgreSQL]
+        Servidor --> Backup[Backup manual para Google Drive]
+        Admin[Funcionario de TI] --> Servidor`,
+
+      "grafico-local": `pie title TCO em 3 anos
+        "Servidor (local) R$ 28.000" : 28000
+        "Rede (local) R$ 2.000" : 2000
+        "Mão de Obra (local) R$ 72.000" : 72000`,
+
+      "grafico-aws": `pie title TCO AWS em 3 anos
+        "EC2 R$ 13.000" : 13000
+        "RDS R$ 2.600" : 2600
+        "Rede R$ 1.000" : 1000
+        "Mão de Obra R$ 20.000" : 20000`,
+
+      "grafico-arquitetura": `graph TD
+        Internet --> Gateway[Internet Gateway]
+        Gateway --> ELB[Elastic Load Balancer]
+        ELB --> EC2[Amazon EC2 - Aplicacao]
+        EC2 --> RDS[Amazon RDS - PostgreSQL]
+        Subnet1[Zona de Disponibilidade A]
+        Subnet2[Zona de Disponibilidade B]
+        EC2 --> Subnet1
+        RDS --> Subnet2
+        Admin[Equipe de TI] -->|Gerencia via AWS Console| EC2`,
+
+      "grafico-comparativo": `pie title Comparativo de Custo Total em 3 anos
+        "Ambiente Local (R$ 102.000)" : 102000
+        "Ambiente AWS (R$ 36.600)" : 36600`
+    };
+
+    for (const [id, code] of Object.entries(charts)) {
+      const el = document.getElementById(id);
+      if (el) mermaid.render(id + "-svg", code).then(({ svg }) => el.innerHTML = svg);
+    }
+  </script>
+</body>
+</html>
